@@ -5,7 +5,7 @@ import (
 )
 
 //Total Area of Polygonal Displacement
-func TAPD(oline []*Point, genidx []int) {
+func TAPD(oline []*Point, genidx []int) float64 {
   var n       = len(genidx)
   var dispmts = make([]float64, n)
   var segidx  = zip(genidx[0: n - 1], genidx[1: n])
@@ -22,7 +22,7 @@ func TAPD(oline []*Point, genidx []int) {
     }
   }
 
-  var slo = dist(segs(oline))
+  var slo = dist(Segments(oline))
   var as  = sum(dispmts)
   return as / slo
 }

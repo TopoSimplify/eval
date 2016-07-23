@@ -11,7 +11,7 @@ func AtDiff(const_at, normal_at []int) []int {
 }
 
 //extra vertices
-func ExtraVertices(pln []*Point, const_at, normal_at []int) {
+func ExtraVertices(pln []*Point, const_at, normal_at []int) []*Point{
     var diff = AtDiff(const_at, normal_at)
     coords := make([]*Point, 0)
     for _, i := range diff {
@@ -21,7 +21,7 @@ func ExtraVertices(pln []*Point, const_at, normal_at []int) {
 }
 
 //percentage extra vertices
-func PercExtra(const_at, normal_at []int) {
+func PercExtra(const_at, normal_at []int) float64{
     var pratio = float64(len(const_at)) / float64(len(normal_at))
     if (pratio < 1) {
         panic("invalid const normal ratio ")

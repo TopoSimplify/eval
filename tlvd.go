@@ -12,7 +12,11 @@ func TLVD(oline []*Point, genidx []int) float64 {
     segidx := zip(genidx[0: n - 1], genidx[1: n])
 
     for _, idx := range segidx {
-        segvect := NewVect(Options{A:idx[0], B:idx[1]})
+        segvect := NewVect(&Options{
+            A : oline[idx[0]],
+            B : oline[idx[1]],
+        })
+
         rmpnts := make([]*Point, 0)
         for _, i := range _range(idx[0] + 1, idx[1]) {
             rmpnts = append(rmpnts, oline[i])
@@ -23,7 +27,7 @@ func TLVD(oline []*Point, genidx []int) float64 {
         }
     }
 
-    var slo = dist(oline)
+    var slo = dist(Segments(oline))
     var vls = sum(dispmts)
     return vls / slo
 }

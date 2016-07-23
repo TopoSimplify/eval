@@ -10,7 +10,7 @@ func _range(o, n int) []int {
     return v
 }
 
-func zip(a, b []int) []int {
+func zip(a, b []int) [][2]int {
     n := min(len(a), len(b))
     c := make([][2]int, n)
     for i := 0; i < n; i++ {
@@ -27,16 +27,16 @@ func min(a, b int) int {
 }
 
 func difference(a, b []int) []int {
-    m := make(map[int]bool)
+    m := make(map[int]struct{})
     for _, v := range a {
-        m[v] = true
+        m[v] = struct{}{}
     }
     for _, v := range b {
         delete(m, v)
     }
     vals := make([]int, 0)
-    for _, v := range m {
-        vals = append(vals, v)
+    for k  := range m {
+        vals = append(vals, k)
     }
     sort.Ints(vals)
     return vals

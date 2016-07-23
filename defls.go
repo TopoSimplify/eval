@@ -12,7 +12,7 @@ func dflns(vsegs []*Vect) []float64{
   }
   var angles = make([]float64, n)
   for i := 0;  i < n;  i++ {
-    angles[i] = DeflectionAngle(vsegs[i], vsegs[i + 1])
+    angles[i] = DeflectionAngle(vsegs[i].D(), vsegs[i + 1].D())
   }
   return angles
 }

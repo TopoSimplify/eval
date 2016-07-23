@@ -5,5 +5,5 @@ import (
 )
 
 func Angularity(coords []*Point) []float64{
-    return dflns(segvects(segs(coords)))
+    return dflns(segvects(Segments(coords)))
 }

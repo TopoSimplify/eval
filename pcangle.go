@@ -6,10 +6,10 @@ import (
 )
 
 //percentage change in angularity
-func PCAngle(origline, simpline []*Point) {
-    var angs = Angularity(simpline)
-    var ango = Angularity(origline)
-    var abs_angs = math.Abs(sum(angs))
-    var abs_ango = math.Abs(sum(ango))
+func PCAngle(original, simple []*Point) float64{
+    var ang_s = Angularity(simple)
+    var ang_o = Angularity(original)
+    var abs_angs = math.Abs(sum(ang_s))
+    var abs_ango = math.Abs(sum(ang_o))
     return (abs_angs / abs_ango) * 100.0
 }

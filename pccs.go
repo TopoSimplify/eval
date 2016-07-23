@@ -6,7 +6,7 @@ import (
 
 
 //percentage change in curvilinear segments
-func PCCS(origline, simpline []*Point ) {
+func PCCS(origline, simpline []*Point ) float64{
   var angs, ango = Angularity(simpline), Angularity(origline)
   var a, b  = _count(angs), _count(ango)
   return  (float64(a) / float64(b)) * 100.0
