@@ -35,10 +35,39 @@ func difference(a, b []int) []int {
         delete(m, v)
     }
     vals := make([]int, 0)
-    for k  := range m {
+    for k := range m {
         vals = append(vals, k)
     }
     sort.Ints(vals)
     return vals
+}
+
+
+//count change in deflection angles
+func num_dflns(angles []float64) int {
+    var k, sign, cursign int
+    for i := 0; i < len(angles); i++ {
+        a := angles[i]
+        if i == 0 {
+            k += 1
+            sign = _sign(a)
+        } else {
+            cursign = _sign(a)//current sign
+            if cursign != sign {
+                //if not equal to prev sign -> new curve
+                k += 1
+                sign = cursign
+            }
+        }
+    }
+    return k
+}
+
+//sign ruturns  1  if f >= 0  else -1
+func _sign(f float64) int {
+    if f >= 0 {
+        return 1
+    }
+    return -1
 }
 

@@ -4,6 +4,8 @@ import (
     .  "simplex/geom"
 )
 
-func Angularity(coords []*Point) []float64{
-    return dflns(segvects(Segments(coords)))
+func angularity(coords []*Point) []float64{
+    return deflections(
+        segment_vectors(
+            segments(coords)))
 }
