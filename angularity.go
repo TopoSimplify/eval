@@ -1,11 +1,9 @@
 package eval
 
 import (
-    .  "simplex/geom"
+	"simplex/geom"
 )
 
-func angularity(coords []*Point) []float64{
-    return deflections(
-        segment_vectors(
-            segments(coords)))
+func angularity(coords []*geom.Point) []float64 {
+	return deflections(segment_vectors(segments(coords)))
 }

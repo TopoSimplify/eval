@@ -1,14 +1,14 @@
 package eval
 
 import (
-    . "simplex/geom"
+	. "simplex/geom"
 )
 
 //Create segments
 func segments(coords []*Point) []*Segment {
-    segs := make([]*Segment, len(coords) - 1)
-    for i := 0; i < len(coords) - 1; i++ {
-        segs[i] = NewSegment(coords[i], coords[i + 1])
-    }
-    return segs
+	segs := make([]*Segment, len(coords)-1)
+	for i := 0; i < len(coords)-1; i++ {
+		segs[i] = NewSegment(coords[i], coords[i+1])
+	}
+	return segs
 }
