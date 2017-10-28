@@ -1,7 +1,7 @@
 package eval
 
 import (
-	"simplex/geom"
+	"github.com/intdxdt/geom"
 )
 
 func angularity(coords []*geom.Point) []float64 {

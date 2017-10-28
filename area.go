@@ -1,16 +1,16 @@
 package eval
 
 import (
-	. "simplex/geom"
+	"github.com/intdxdt/geom"
 )
 
-func displacement_area_complex(coords []*Point) float64 {
+func displacement_area(coords []*geom.Point) float64 {
 	n := len(coords)
-	var sub_seg *Segment
-	blade := NewSegment(coords[0], coords[n-1])
-	subpolys := make([][]*Segment, 0)
+	var sub_seg *geom.Segment
+	blade := geom.NewSegment(coords[0], coords[n-1])
+	subpolys := make([][]*geom.Segment, 0)
 	segs := segments(coords)
-	cur := make([]*Segment, 0)
+	cur := make([]*geom.Segment, 0)
 
 	for i := 0; i < len(segs); i++ {
 		if i == 0 || i == len(segs)-1 {
@@ -19,13 +19,13 @@ func displacement_area_complex(coords []*Point) float64 {
 			s := segs[i]
 			pnts, bln := blade.SegSegIntersection(s, false)
 			if bln {
-				sub_seg = NewSegment(s.A, pnts[0])
+				sub_seg = geom.NewSegment(s.A, pnts[0])
 				cur = append(cur, sub_seg)
 				//---------------------------------
 				subpolys = append(subpolys, cur)
-				cur = make([]*Segment, 0)
+				cur = make([]*geom.Segment, 0)
 				//---------------------------------
-				sub_seg = NewSegment(pnts[len(pnts)-1], s.B)
+				sub_seg = geom.NewSegment(pnts[len(pnts)-1], s.B)
 				cur = append(cur, sub_seg)
 			} else {
 				sub_seg = segs[i]
@@ -45,11 +45,11 @@ func displacement_area_complex(coords []*Point) float64 {
 	return areas
 }
 
-func segs_to_polygon(segs []*Segment) *Polygon {
-	var coords = make([]*Point, 0)
+func segs_to_polygon(segs []*geom.Segment) *geom.Polygon {
+	var coords = make([]*geom.Point, 0)
 	for _, seg := range segs {
 		coords = append(coords, seg.A)
 		coords = append(coords, seg.B)
 	}
-	return NewPolygon(coords)
+	return geom.NewPolygon(coords)
 }

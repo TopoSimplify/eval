@@ -1,40 +1,40 @@
 package eval
 
 import (
-	. "simplex/geom"
-	. "simplex/vect"
+	"github.com/intdxdt/geom"
+	"github.com/intdxdt/vect"
 	"math"
 )
 
 //Percentage Change in Angularity
-func PCAngle(original, simple []*Point) float64 {
+func PC_Angularity(original, simple []*geom.Point) float64 {
 	var angs = angularity(simple)
 	var ango = angularity(original)
 	return (math.Abs(sum(angs)) / math.Abs(sum(ango))) * 100.0
 }
 
 //Percentage Change in Curvilinear Segments
-func PCCS(original, simple []*Point) float64 {
+func PC_CurvlinearSegs(original, simple []*geom.Point) float64 {
 	var angs = angularity(simple)
 	var ango = angularity(original)
-	var sc = float64(num_dflns(angs))
-	var oc = float64(num_dflns(ango))
+	var sc = float64(num_deflections(angs))
+	var oc = float64(num_deflections(ango))
 	return (sc / oc ) * 100.0
 }
 
 //Total Length of Vector Difference
-func TLVD(oline []*Point, genidx []int) float64 {
+func TL_VectorDiff(oline []*geom.Point, genidx []int) float64 {
 	n := len(genidx)
 	vls := make([]float64, 0)
 	segidx := zip(genidx[0: n-1], genidx[1: n])
 
 	for _, idx := range segidx {
-		segvect := NewVect(&Options{
+		segvect := vect.NewVect(&vect.Options{
 			A: oline[idx[0]],
 			B: oline[idx[1]],
 		})
 
-		rmpnts := make([]*Point, 0)
+		rmpnts := make([]*geom.Point, 0)
 		for _, i := range _range(idx[0]+1, idx[1]) {
 			rmpnts = append(rmpnts, oline[i])
 		}
@@ -48,7 +48,7 @@ func TLVD(oline []*Point, genidx []int) float64 {
 }
 
 //Total Area of Polygonal Displacement
-func TAPD(original []*Point, genidx []int) float64 {
+func TA_PolyDisplacement(original []*geom.Point, genidx []int) float64 {
 	var as = make([]float64, 0)
 	var n = len(genidx)
 	var segidx = zip(genidx[0: n-1], genidx[1: n])
@@ -56,12 +56,12 @@ func TAPD(original []*Point, genidx []int) float64 {
 	for _, idx := range segidx {
 		if idx[1]-idx[0] > 1 {
 			var plyidx = _range(idx[0], idx[1]+1)
-			var poly = make([]*Point, 0)
+			var poly = make([]*geom.Point, 0)
 
 			for _, i := range plyidx {
 				poly = append(poly, original[i])
 			}
-			area := displacement_area_complex(poly)
+			area := displacement_area(poly)
 			as = append(as, area)
 		}
 	}

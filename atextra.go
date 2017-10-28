@@ -1,6 +1,6 @@
 package eval
 
-import . "simplex/geom"
+import . "github.com/intdxdt/geom"
 
 //difference indices as result of constraint
 func AtDiff(const_at, normal_at []int) []int {
@@ -23,7 +23,7 @@ func ExtraVertices(pln []*Point, const_at, normal_at []int) []*Point {
 //percentage extra vertices
 func PercExtra(const_at, normal_at []int) float64 {
 	var pratio = float64(len(const_at)) / float64(len(normal_at))
-	if (pratio < 1) {
+	if pratio < 1 {
 		panic("invalid const normal ratio ")
 	}
 	return pratio
