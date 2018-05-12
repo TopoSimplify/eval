@@ -1,3 +1,6 @@
-#Algor Evaluation
+# eval 
 
-1. area displacement around complex polygon
+line simplification evaluation by - McMaster[1987]
+
+
+# lic 
