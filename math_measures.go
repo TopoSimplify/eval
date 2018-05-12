@@ -1,9 +1,9 @@
 package eval
 
 import (
+	"math"
 	"github.com/intdxdt/geom"
 	"github.com/intdxdt/vect"
-	"math"
 )
 
 //Percentage Change in Angularity
@@ -61,7 +61,7 @@ func TA_PolyDisplacement(original []*geom.Point, genidx []int) float64 {
 			for _, i := range plyidx {
 				poly = append(poly, original[i])
 			}
-			area := displacement_area(poly)
+			area := displacementArea(poly)
 			as = append(as, area)
 		}
 	}

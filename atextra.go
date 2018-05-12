@@ -1,6 +1,6 @@
 package eval
 
-import . "github.com/intdxdt/geom"
+import "github.com/intdxdt/geom"
 
 //difference indices as result of constraint
 func AtDiff(const_at, normal_at []int) []int {
@@ -11,9 +11,9 @@ func AtDiff(const_at, normal_at []int) []int {
 }
 
 //extra vertices
-func ExtraVertices(pln []*Point, const_at, normal_at []int) []*Point {
+func ExtraVertices(pln []*geom.Point, const_at, normal_at []int) []*geom.Point {
 	var diff = AtDiff(const_at, normal_at)
-	coords := make([]*Point, 0)
+	coords := make([]*geom.Point, 0)
 	for _, i := range diff {
 		coords = append(coords, pln[i])
 	}
