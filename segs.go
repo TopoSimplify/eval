@@ -16,7 +16,7 @@ func segments(coords []*geom.Point) []*geom.Segment {
 }
 
 //Segment vectors
-func segment_vectors(segs []*geom.Segment) []*vect.Vect {
+func segmentVectors(segs []*geom.Segment) []*vect.Vect {
 	var n = len(segs)
 	var segv = make([]*vect.Vect, n)
 	for i := 0; i < n; i++ {
@@ -29,7 +29,7 @@ func segment_vectors(segs []*geom.Segment) []*vect.Vect {
 }
 
 //segments length
-func seg_lengths(segs []*geom.Segment) []float64 {
+func segLengths(segs []*geom.Segment) []float64 {
 	dists := make([]float64, len(segs))
 	for i, v := range segs {
 		dists[i] = v.A.Distance(v.B)

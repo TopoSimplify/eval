@@ -17,8 +17,8 @@ func PC_Angularity(original, simple []*geom.Point) float64 {
 func PC_CurvlinearSegs(original, simple []*geom.Point) float64 {
 	var angs = angularity(simple)
 	var ango = angularity(original)
-	var sc = float64(num_deflections(angs))
-	var oc = float64(num_deflections(ango))
+	var sc = float64(numDeflections(angs))
+	var oc = float64(numDeflections(ango))
 	return (sc / oc ) * 100.0
 }
 

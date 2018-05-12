@@ -3,16 +3,16 @@ package eval
 import "github.com/intdxdt/geom"
 
 //difference indices as result of constraint
-func AtDiff(const_at, normal_at []int) []int {
-	if len(const_at) < len(normal_at) {
+func AtDiff(constAt, normalAt []int) []int {
+	if len(constAt) < len(normalAt) {
 		panic("const at length is less than normal at length")
 	}
-	return difference(const_at, normal_at)
+	return difference(constAt, normalAt)
 }
 
 //extra vertices
-func ExtraVertices(pln []*geom.Point, const_at, normal_at []int) []*geom.Point {
-	var diff = AtDiff(const_at, normal_at)
+func ExtraVertices(pln []*geom.Point, constAt, normalAt []int) []*geom.Point {
+	var diff = AtDiff(constAt, normalAt)
 	coords := make([]*geom.Point, 0)
 	for _, i := range diff {
 		coords = append(coords, pln[i])
@@ -21,8 +21,8 @@ func ExtraVertices(pln []*geom.Point, const_at, normal_at []int) []*geom.Point {
 }
 
 //percentage extra vertices
-func PercExtra(const_at, normal_at []int) float64 {
-	var pratio = float64(len(const_at)) / float64(len(normal_at))
+func PercExtra(constAt, normalAt []int) float64 {
+	var pratio = float64(len(constAt)) / float64(len(normalAt))
 	if pratio < 1 {
 		panic("invalid const normal ratio ")
 	}

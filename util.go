@@ -43,7 +43,7 @@ func difference(a, b []int) []int {
 }
 
 //count change in deflection angles
-func num_deflections(angles []float64) int {
+func numDeflections(angles []float64) int {
 	var k, sign, cursign int
 	for i := 0; i < len(angles); i++ {
 		a := angles[i]

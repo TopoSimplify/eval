@@ -5,16 +5,16 @@ import (
 )
 
 //removed vertices ratio
-func rm_ratio(rm, at int) float64 {
+func rmRatio(rm, at int) float64 {
 	return float64(rm) / float64(at)
 }
 
 //percentage redundancy
-func perc_redundancy(rm, at []int) float64 {
-	return math.Round(rm_ratio(len(rm), len(at))*100.0, 0)
+func percRedundancy(rm, at []int) float64 {
+	return math.Round(rmRatio(len(rm), len(at))*100.0, 0)
 }
 
 //percentage interesting
 func perc_intrest(rm, at []int) float64 {
-	return 100.0 - perc_redundancy(rm, at)
+	return 100.0 - percRedundancy(rm, at)
 }
