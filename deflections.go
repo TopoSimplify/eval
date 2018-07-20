@@ -2,7 +2,7 @@ package eval
 
 import (
 	"github.com/intdxdt/vect"
-	"github.com/intdxdt/cart"
+	"github.com/intdxdt/geom"
 )
 
 //computes the deflections of a series of vectors
@@ -20,5 +20,5 @@ func deflections(vs []*vect.Vect) []float64 {
 
 //deflection between two vectors
 func deflection(a, b *vect.Vect) float64 {
-	return cart.DeflectionAngle(a.Direction(), b.Direction())
+	return geom.DeflectionAngle(a.Direction(), b.Direction())
 }

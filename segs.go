@@ -6,11 +6,11 @@ import (
 )
 
 //Create segments
-func segments(coords []*geom.Point) []*geom.Segment {
+func segments(coords []geom.Point) []*geom.Segment {
 	segs := make([]*geom.Segment, len(coords)-1)
 	for i := 0; i < len(coords)-1; i++ {
 		j := i + 1
-		segs[i] = geom.NewSegment(coords[i], coords[j])
+		segs[i] = geom.NewSegment(&coords[i], &coords[j])
 	}
 	return segs
 }
@@ -20,10 +20,7 @@ func segmentVectors(segs []*geom.Segment) []*vect.Vect {
 	var n = len(segs)
 	var segv = make([]*vect.Vect, n)
 	for i := 0; i < n; i++ {
-		segv[i] = vect.NewVect(&vect.Options{
-			A: segs[i].A,
-			B: segs[i].B,
-		})
+		segv[i] = vect.NewVect( *segs[i].A, *segs[i].B)
 	}
 	return segv
 }
