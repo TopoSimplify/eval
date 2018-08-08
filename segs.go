@@ -10,7 +10,7 @@ func segments(coords []geom.Point) []*geom.Segment {
 	segs := make([]*geom.Segment, len(coords)-1)
 	for i := 0; i < len(coords)-1; i++ {
 		j := i + 1
-		segs[i] = geom.NewSegment(&coords[i], &coords[j])
+		segs[i] = geom.NewSegmentAB(&coords[i], &coords[j])
 	}
 	return segs
 }

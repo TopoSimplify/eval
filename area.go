@@ -7,7 +7,7 @@ import (
 func displacementArea(coords []geom.Point) float64 {
 	var n = len(coords)
 	var subSeg *geom.Segment
-	var blade = geom.NewSegment(&coords[0], &coords[n-1])
+	var blade = geom.NewSegmentAB(&coords[0], &coords[n-1])
 	var subpolys = make([][]*geom.Segment, 0)
 	var segs = segments(coords)
 	var cur = make([]*geom.Segment, 0)
@@ -19,13 +19,13 @@ func displacementArea(coords []geom.Point) float64 {
 			s := segs[i]
 			pnts := blade.SegSegIntersection(s)
 			if len(pnts) > 0 {
-				subSeg = geom.NewSegment(s.A, &pnts[0].Point)
+				subSeg = geom.NewSegmentAB(s.A, &pnts[0].Point)
 				cur = append(cur, subSeg)
 				//---------------------------------
 				subpolys = append(subpolys, cur)
 				cur = make([]*geom.Segment, 0)
 				//---------------------------------
-				subSeg = geom.NewSegment(&pnts[len(pnts)-1].Point, s.B)
+				subSeg = geom.NewSegmentAB(&pnts[len(pnts)-1].Point, s.B)
 				cur = append(cur, subSeg)
 			} else {
 				subSeg = segs[i]
